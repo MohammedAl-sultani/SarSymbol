@@ -1,89 +1,76 @@
 # SarSymbol Library
 
-![SarSymbol Logo](https://via.placeholder.com/150) <!-- استبدل هذا الرابط برابط صورة الشعار إذا كان لديك -->
+![SarSymbol Logo](https://via.placeholder.com/150) <!-- Replace this link with your logo if available -->
 
-SarSymbol هي مكتبة أندرويد مخصصة لعرض رموز العملات (مثل الريال السعودي "ر.س" أو "SAR") كرموز رسومية (Drawable) داخل النصوص. المكتبة تدعم تخصيص الرموز اليسرى واليمنى للعملة وتطبيق الألوان تلقائيًا بناءً على لون النص.
+SarSymbol is an Android library designed to display currency symbols (such as the Saudi Riyal "ر.س" or "SAR") as graphical symbols (Drawable) within text. The library supports customizing left and right currency symbols and automatically applies colors based on the text color.
 
-## المميزات
+## Features
 
-- عرض رموز العملات كرموز رسومية داخل النصوص.
-- دعم تخصيص الرموز اليسرى واليمنى للعملة.
-- تطبيق لون الرمز تلقائيًا بناءً على لون النص.
-- سهلة التكامل مع مشاريع الأندرويد الحالية.
+- Display currency symbols as graphical symbols within text.
+- Customize left and right currency symbols.
+- Automatically apply symbol colors based on the text color.
+- Easy integration with existing Android projects.
 
-## التثبيت
+## Installation
 
-### عبر Gradle
+### Via Gradle
 
-أضف التبعية التالية إلى ملف `build.gradle` لمشروعك:
+Add the following dependency to your project's `build.gradle` file:
 
-```groovy
+
+### Installation
+1. Add the dependency
+Add the following to your build.gradle file (Module level):
+```
 dependencies {
-    implementation 'com.github.yourusername:yourrepository:version'
+    implementation 'com.sultani:sar:1.0.0'  // Use the latest version
 }
-ملاحظة: استبدل yourusername و yourrepository و version بقيمك الخاصة.
+```
+2. Sync your project
+After adding the dependency, sync your project with Gradle to download the library.
 
-الاستخدام
-تهيئة SarSymbol
-يمكنك استخدام SarSymbol في ملفات XML أو عبر الكود.
+### Usage
+1. Add SarSymbol to your layout
+You can add SarSymbol directly to your XML layout:
 
-في XML
-xml
+````
 <com.sultani.sar.SarSymbol
-    android:id="@+id/sarSymbol"
+    android:id="@+id/sarSymbolText"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="100.50"
-    app:currentCurrency="SAR"
-    app:leftSymbol="ر.س"
-    app:rightSymbol="SAR" />
-في الكود
-kotlin
-val sarSymbol = SarSymbol(context).apply {
-    text = "100.50"
-    currentCurrency = "SAR"
-    leftSymbol = "ر.س"
-    rightSymbol = "SAR"
-}
-تخصيص الرموز
-يمكنك تخصيص الرموز اليسرى واليمنى للعملة:
+    android:text="100 SAR"
+    android:textSize="16sp"
+    android:textColor="@android:color/black" />
+````
 
-kotlin
-val sarSymbol = SarSymbol(context).apply {
-    text = "100.50"
-    currentCurrency = "USD"
-    leftSymbol = "$"
+android:text: The text to display, which can include the currency symbol (e.g., "100 SAR" or "100 ر.س").
+android:textSize: The size of the text.
+android:textColor: The color of the text.
+2. Customize currency symbols programmatically
+The default symbols are "ر.س" for the left and "SAR" for the right. You can customize these symbols by setting them programmatically:
+
+```
+val sarSymbolText = findViewById<SarSymbol>(R.id.sarSymbolText)
+sarSymbolText.setText("100 USD")  // Default symbols will be used (SAR)
+```
+To specify custom symbols for both sides:
+
+```
+val sarSymbolText = SarSymbol(
+    context,
+    currentCurrency = "USD",
+    leftSymbol = "$",
     rightSymbol = "USD"
-}
-تغيير لون الرمز
-لون الرمز يتغير تلقائيًا بناءً على لون النص. يمكنك تغيير لون النص كالتالي:
+)
+sarSymbolText.setText("100 USD")
+```
+#### 3. How it works
+SarSymbol detects the currency symbol (left or right) in the provided text.
+It replaces the symbol with a drawable image (sar drawable resource).
+The image scales to match the text size automatically.
+Customization
+You can customize the SarSymbol widget using the following parameters:
 
-kotlin
-sarSymbol.setTextColor(Color.RED)
-
-
-المساهمة
-نرحب بالمساهمات! إذا كنت ترغب في المساهمة في هذا المشروع، يرجى اتباع الخطوات التالية:
-
-قم بعمل Fork للمشروع.
-
-قم بإنشاء فرع جديد (git checkout -b feature/YourFeatureName).
-
-قم بإجراء التغييرات المطلوبة.
-
-قم بعمل Commit للتغييرات (git commit -m 'Add some feature').
-
-قم بعمل Push إلى الفرع (git push origin feature/YourFeatureName).
-
-افتح طلب Pull.
-
-الرخصة
-هذا المشروع مرخص تحت MIT License.
-
-
-### ملاحظات:
-1. **الصور التوضيحية**: استبدل الروابط المؤقتة (`https://via.placeholder.com/...`) بروابط صور حقيقية توضح كيفية عمل المكتبة.
-2. **الترخيص**: إذا كنت تستخدم ترخيصًا مختلفًا، استبدل `[MIT License](LICENSE)` بالترخيص المناسب.
-3. **التبديلات**: استبدل `yourusername` و `yourrepository` و `version` بمعلومات مستودعك الفعلية.
-
-بعد الانتهاء من كتابة الملف، احفظه باسم `README.md` في الجذر (root) لمستودع GitHub الخاص بك.
+currentCurrency: The currency to display (e.g., "USD", "SAR", etc.). Default is "SAR".
+leftSymbol: The symbol to display on the left of the amount (e.g., "$", "ر.س"). Default is "ر.س".
+rightSymbol: The symbol to display on the right of the amount (e.g., "USD", "SAR"). Default is "SAR".
