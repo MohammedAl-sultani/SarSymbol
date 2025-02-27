@@ -1,5 +1,5 @@
 # SarSymbol Library
-![SarSymbol Image](sar.png)
+![SarSymbol Image](sar2.png)
 
 `SarSymbol` is a custom `TextView` for Android that replaces currency symbols like "SAR" or "ر.س" with an image (`Drawable`). The library scales the image based on the text size and allows customizable currency symbols.
 
