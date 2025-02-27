@@ -39,7 +39,7 @@ To use SarSymbol, simply add it to your layout XML file:
 android:text: Text to display, including currency symbols (e.g., "100 SAR" or "100 ر.س").
 android:textSize: Size of the text.
 android:textColor: Color of the text.
-````
+
 2. Customize Currency Symbols
 By default, SarSymbol uses "ر.س" for the left symbol and "SAR" for the right symbol. You can customize these symbols when needed:
 
