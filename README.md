@@ -18,7 +18,7 @@ Add the dependency to your project-level `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'com.sultani:sar:1.0.0'  // Replace with the latest version
+    implementation 'com.github.MohammedAl-sultani:SarSymbol:1.0.0' // Replace with the latest version
 }
 ```
 
