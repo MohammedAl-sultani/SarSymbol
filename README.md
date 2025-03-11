@@ -19,7 +19,7 @@ Add the dependency to your project-level `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'com.sultani:sar:1.0.0'  // Use the latest available version
+    implementation 'com.github.MohammedAl-sultani:SarSymbol:1.0.0' // Replace with the latest version
 }
 ```
 
@@ -131,7 +131,7 @@ This library is open-source. Feel free to contribute and improve it!
 
 ```gradle
 dependencies {
-    implementation 'com.sultani:sar:1.0.0'  // استخدم أحدث إصدار متاح
+    implementation 'com.github.MohammedAl-sultani:SarSymbol:1.0.0' // Replace with the latest version
 }
 ```
 
