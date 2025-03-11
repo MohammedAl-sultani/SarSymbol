@@ -13,13 +13,17 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.sultani.sar.R
-import com.sultani.sar.utils.AppSharedPreference
 
 class SarTextView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
+
+    // Properties for currency symbols
+    var currency: String? = "sar"
+    var leftCurrency: String? = "ر.س"
+    var rightCurrency: String? = "R.S"
 
     // Drawable for the currency symbol
     private var sarDrawable: Drawable? = null
@@ -62,7 +66,6 @@ class SarTextView @JvmOverloads constructor(
                 return SpannableString("")
             }
 
-            val currency = AppSharedPreference.getCurrencyCode(context, "")
             if (currency.isNullOrEmpty() || currency.equals("sar", ignoreCase = true)) {
                 replaceCurrencySymbolsWithDrawable(text.toString())
             } else {
@@ -80,10 +83,7 @@ class SarTextView @JvmOverloads constructor(
     private fun replaceCurrencySymbolsWithDrawable(text: String): SpannableString {
         return try {
             val spannableStringBuilder = SpannableStringBuilder(text)
-            val symbols = listOfNotNull(
-                AppSharedPreference.getCurrencyRightSymbol(context),
-                AppSharedPreference.getCurrencyLeftSymbol(context)
-            )
+            val symbols = listOfNotNull(rightCurrency, leftCurrency)
 
             symbols.forEach { symbol ->
                 var startIndex = text.indexOf(symbol, ignoreCase = true)
@@ -92,7 +92,7 @@ class SarTextView @JvmOverloads constructor(
                 while (startIndex != -1 && loopCounter < 100) {
                     try {
                         // Replace the symbol with a zero-width space and an ImageSpan
-                        spannableStringBuilder.replace(startIndex, startIndex + symbol.length, " \u200B \u200B ")
+                        spannableStringBuilder.replace(startIndex, startIndex + symbol.length, " \u200B")
                         sarDrawable?.let { drawable ->
                             val imageSpan = ImageSpan(drawable, ImageSpan.ALIGN_BASELINE)
                             spannableStringBuilder.setSpan(
