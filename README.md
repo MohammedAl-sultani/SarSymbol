@@ -1,14 +1,15 @@
 # SarSymbol Library
+
 ![SarSymbol Image](sar2.png)
 
-`SarSymbol` is a custom `TextView` for Android that replaces currency symbols like "SAR" or "ر.س" with an image (`Drawable`). The library scales the image based on the text size and allows customizable currency symbols.
+`SarSymbol` is a custom `TextView` for Android that replaces currency symbols like "SAR" or "ر.س" with an image (`Drawable`). The image scales automatically to match the text size, and custom currency symbols can be set easily.
 
 ## ✨ Features
 
 - Replaces currency symbols (e.g., "SAR", "ر.س") with an image (`Drawable`).
-- Customizable left and right currency symbols.
+- Supports customizable left and right currency symbols.
 - Automatically scales the drawable to match the text size.
-- Simple integration into your Android project.
+- Easy integration into Android projects.
 
 ## 📦 Installation
 
@@ -18,7 +19,7 @@ Add the dependency to your project-level `build.gradle` file:
 
 ```gradle
 dependencies {
-    implementation 'com.github.MohammedAl-sultani:SarSymbol:1.0.0' // Replace with the latest version
+    implementation 'com.sultani:sar:1.0.0'  // Use the latest available version
 }
 ```
 
@@ -28,12 +29,12 @@ Sync your project with Gradle to download the library.
 
 ## 🚀 Usage
 
-### 1️⃣ Add `SarSymbol` to Your Layout
+### 1️⃣ Add `SarSymbol` to Your Layout (XML)
 
 To use `SarSymbol`, add it to your XML layout:
 
 ```xml
-<com.sultani.sar.SarSymbol
+<com.sultani.sar.SarTextView
     android:id="@+id/sarSymbolText"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -44,57 +45,52 @@ To use `SarSymbol`, add it to your XML layout:
 
 ### 2️⃣ Customize Currency Symbols
 
-By default, `SarSymbol` uses "ر.س" for the left symbol and "SAR" for the right symbol. You can customize these symbols:
+By default, `SarSymbol` uses "ر.س" for the left symbol and "SAR" for the right symbol. You can customize these values easily:
 
 #### Kotlin Example:
 ```kotlin
-val sarSymbolText = findViewById<SarSymbol>(R.id.sarSymbolText)
-sarSymbolText.setText("100 USD")  // The default SAR symbol will be used
+val sarSymbolText = findViewById<SarTextView>(R.id.sarSymbolText)
+sarSymbolText.text = "100 USD"  // The default SAR symbol will be used
 ```
 
-For custom left and right symbols:
-
+To customize the symbols:
 ```kotlin
-val sarSymbolText = SarSymbol(
-    context,
-    currentCurrency = "USD",  // Set the currency
-    leftSymbol = "$",  // Custom left symbol
-    rightSymbol = "USD"  // Custom right symbol
-)
-sarSymbolText.setText("100 USD")
+val sarSymbolText = SarTextView(context).apply {
+    currency = "USD"  // Set the currency
+    leftCurrency = "$"  // Custom left symbol
+    rightCurrency = "USD"  // Custom right symbol
+}
+sarSymbolText.text = "100 USD"
 ```
 
 #### Java Example:
 ```java
-SarSymbol sarSymbolText = findViewById(R.id.sarSymbolText);
+SarTextView sarSymbolText = findViewById(R.id.sarSymbolText);
 sarSymbolText.setText("100 USD");  // The default SAR symbol will be used
 ```
 
-For custom left and right symbols:
-
+To customize the symbols:
 ```java
-SarSymbol sarSymbolText = new SarSymbol(
-    context,
-    "USD",  // Set the currency
-    "$",  // Custom left symbol
-    "USD"  // Custom right symbol
-);
+SarTextView sarSymbolText = new SarTextView(context);
+sarSymbolText.setCurrency("USD");  // Set the currency
+sarSymbolText.setLeftCurrency("$");  // Custom left symbol
+sarSymbolText.setRightCurrency("USD");  // Custom right symbol
 sarSymbolText.setText("100 USD");
 ```
 
 ## ⚙️ How It Works
 
-- The `SarSymbol` widget automatically detects currency symbols within the provided text.
-- It replaces these symbols with a drawable image (`sar drawable resource`).
-- The drawable scales to match the text size, ensuring a clean and visually appealing result.
+- The `SarTextView` widget automatically detects currency symbols within the provided text.
+- It replaces these symbols with a predefined drawable image (`sar drawable resource`).
+- The drawable scales automatically to match the text size, ensuring a clean and visually appealing result.
 
 ## 🔧 Customization Options
 
 | Parameter       | Description                                          | Default |
 |---------------|--------------------------------------------------|---------|
-| `currentCurrency` | The currency symbol to display (e.g., "USD", "SAR"). | "SAR"   |
-| `leftSymbol`    | The symbol to display on the left (e.g., "$", "ر.س"). | "ر.س"   |
-| `rightSymbol`   | The symbol to display on the right (e.g., "USD", "SAR"). | "SAR"   |
+| `currency`    | The currency symbol to display (e.g., "USD", "SAR"). | "SAR"   |
+| `leftCurrency` | The symbol displayed on the left (e.g., "$", "ر.س"). | "ر.س"   |
+| `rightCurrency`| The symbol displayed on the right (e.g., "USD", "SAR"). | "SAR"   |
 
 ## 📌 Example Output
 
@@ -111,4 +107,75 @@ The "SAR" symbol is replaced with an image, scaled based on text size.
 ## 📜 License
 
 This library is open-source. Feel free to contribute and improve it!
+
+---
+
+# مكتبة SarSymbol
+
+![SarSymbol Image](sar2.png)
+
+`SarSymbol` هو مكون مخصص (`TextView`) لنظام أندرويد يقوم باستبدال رموز العملات مثل "SAR" أو "ر.س" بصورة (`Drawable`). يتم ضبط حجم الصورة تلقائيًا لتتناسب مع حجم النص، كما يمكن تخصيص رموز العملات المستخدمة بسهولة.
+
+## ✨ المميزات
+
+- استبدال رموز العملات (مثل "SAR"، "ر.س") بصورة (`Drawable`).
+- دعم رموز عملات مخصصة لكل من الجهة اليسرى واليمنى.
+- ضبط تلقائي لحجم الصورة لتتناسب مع حجم النص.
+- تكامل سهل في مشاريع الأندرويد.
+
+## 📦 التثبيت
+
+### 1️⃣ إضافة التبعية
+
+أضف التبعية إلى ملف `build.gradle` الخاص بالمشروع:
+
+```gradle
+dependencies {
+    implementation 'com.sultani:sar:1.0.0'  // استخدم أحدث إصدار متاح
+}
+```
+
+### 2️⃣ مزامنة المشروع
+
+قم بمزامنة المشروع مع Gradle لتحميل المكتبة.
+
+## 🚀 طريقة الاستخدام
+
+### 1️⃣ إضافة `SarSymbol` إلى التخطيط (XML)
+
+لاستخدام `SarSymbol`، قم بإضافته إلى ملف تخطيط XML:
+
+```xml
+<com.sultani.sar.SarTextView
+    android:id="@+id/sarSymbolText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="100 SAR"
+    android:textSize="16sp"
+    android:textColor="@android:color/black" />
+```
+
+### 2️⃣ تخصيص رموز العملات
+
+افتراضيًا، يستخدم `SarSymbol` الرمز "ر.س" على اليسار و"SAR" على اليمين. يمكنك تغيير هذه القيم بسهولة:
+
+#### مثال بلغة Kotlin:
+```kotlin
+val sarSymbolText = findViewById<SarTextView>(R.id.sarSymbolText)
+sarSymbolText.text = "100 USD"  // سيتم استخدام رمز SAR الافتراضي
+```
+
+لتخصيص الرموز:
+```kotlin
+val sarSymbolText = SarTextView(context).apply {
+    currency = "USD"  // تعيين العملة
+    leftCurrency = "$"  // رمز مخصص على اليسار
+    rightCurrency = "USD"  // رمز مخصص على اليمين
+}
+sarSymbolText.text = "100 USD"
+```
+
+## 📜 الرخصة
+
+هذه المكتبة مفتوحة المصدر. لا تتردد في المساهمة وتحسينها!
 
