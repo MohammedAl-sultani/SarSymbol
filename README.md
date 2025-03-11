@@ -13,7 +13,21 @@
 
 ## 📦 Installation
 
-### 1️⃣ Add the Dependency
+### 1️⃣ Add the JitPack Repository
+
+First, add the JitPack repository to your project's `settings.gradle` file:
+
+```groovy
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' } // Add this line
+    }
+}
+```
+
+### 2️⃣ Add the Dependency
 
 Add the dependency to your project-level `build.gradle` file:
 
@@ -23,7 +37,7 @@ dependencies {
 }
 ```
 
-### 2️⃣ Sync the Project
+### 3️⃣ Sync the Project
 
 Sync your project with Gradle to download the library.
 
@@ -125,7 +139,21 @@ This library is open-source. Feel free to contribute and improve it!
 
 ## 📦 التثبيت
 
-### 1️⃣ إضافة التبعية
+### 1️⃣ إضافة مستودع JitPack
+
+أضف مستودع JitPack إلى ملف `settings.gradle` الخاص بالمشروع:
+
+```groovy
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' } // أضف هذا السطر
+    }
+}
+```
+
+### 2️⃣ إضافة التبعية
 
 أضف التبعية إلى ملف `build.gradle` الخاص بالمشروع:
 
@@ -135,7 +163,7 @@ dependencies {
 }
 ```
 
-### 2️⃣ مزامنة المشروع
+### 3️⃣ مزامنة المشروع
 
 قم بمزامنة المشروع مع Gradle لتحميل المكتبة.
 
@@ -153,26 +181,6 @@ dependencies {
     android:text="100 SAR"
     android:textSize="16sp"
     android:textColor="@android:color/black" />
-```
-
-### 2️⃣ تخصيص رموز العملات
-
-افتراضيًا، يستخدم `SarSymbol` الرمز "ر.س" على اليسار و"SAR" على اليمين. يمكنك تغيير هذه القيم بسهولة:
-
-#### مثال بلغة Kotlin:
-```kotlin
-val sarSymbolText = findViewById<SarTextView>(R.id.sarSymbolText)
-sarSymbolText.text = "100 USD"  // سيتم استخدام رمز SAR الافتراضي
-```
-
-لتخصيص الرموز:
-```kotlin
-val sarSymbolText = SarTextView(context).apply {
-    currency = "USD"  // تعيين العملة
-    leftCurrency = "$"  // رمز مخصص على اليسار
-    rightCurrency = "USD"  // رمز مخصص على اليمين
-}
-sarSymbolText.text = "100 USD"
 ```
 
 ## 📜 الرخصة
